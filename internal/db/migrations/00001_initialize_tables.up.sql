@@ -1,0 +1,4 @@
+CREATE TABLE movies(
+    id BIGSERIAL NOT NULL CONSTRAINT "Pk_Movies" PRIMARY KEY,
+    movie_name VARCHAR(250) NOT NULL
+);

@@ -1,0 +1,66 @@
+package uihtml
+
+import (
+	"gopoc/internal/db/repositories"
+	"fmt"
+)
+
+templ Layout() {
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<script src="https://unpkg.com/htmx.org@1.9.9"></script>
+			<script src="https://unpkg.com/htmx.org/dist/ext/debug.js"></script>
+			<title>Document</title>
+		</head>
+		<body>
+			{ children... }
+		</body>
+	</html>
+}
+
+templ MovieList(movies []repositories.Movie) {
+	<div id="movie-list" hx-swap="outerHTML">
+		for _, movie := range movies {
+			@MovieRow(movie)
+		}
+	</div>
+	@AddMovieButton()
+}
+
+templ Index(movie []repositories.Movie) {
+	@Layout() {
+		@MovieList(movie)
+	}
+}
+
+templ Delete() {
+}
+
+templ MovieRow(movie repositories.Movie) {
+	<div class="movie-row">
+		<div>{ movie.MovieName }</div>
+		<div><button hx-target="closest .movie-row" hx-delete={ fmt.Sprintf("/movie/%v", movie.ID) }>Delete Movie</button></div>
+	</div>
+}
+
+templ AddMovieButton() {
+	<button id="Zkouska" hx-get="/add-movie" hx-swap="outerHTML" type="button">Add movie</button>
+}
+
+templ AddMovieForm() {
+	<form id="Zkouska" hx-post="/add-movie" hx-swap="outerHTML" >
+		<label for="movieName">Movie name</label>
+		<input id="movieName" name="name" type="text"/>
+		<input type="submit"/>
+	</form>
+}
+
+templ AddMovieResult(movie repositories.Movie) {
+	<div class="movie-row" hx-target="movie-list" hx-swap="beforeend">
+		<div>{ movie.MovieName }</div>
+<div><button hx-target="closest .movie-row" hx-delete={ fmt.Sprintf("/movie/%v", movie.ID) }>Delete Movie</button></div>
+	</div>
+	@AddMovieButton()
+}

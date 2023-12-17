@@ -1,0 +1,7 @@
+database:
+  hostname: "localhost"
+  port: 5432
+  username: "postgres"
+  password: "super_duper_password"
+  dbname: "gopoc"
+
