@@ -2,6 +2,18 @@ version: '3.8'
 
 services:
 
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+    depends_on:
+      - postgres
+    command: run-api
+    restart: always
 
   postgres:
     image: postgres:alpine
@@ -23,3 +35,4 @@ services:
 networks:
   app-network:
     name: app-network
+
