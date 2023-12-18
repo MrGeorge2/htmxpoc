@@ -9,10 +9,10 @@ import (
 
 var version = "0.0.1"
 var rootCmd = &cobra.Command{
-	Use:     "mmaker",
+	Use:     "htmxpoc",
 	Version: version,
-	Short:   "mmaker",
-	Long:    "mmaker",
+	Short:   "root cmd of htmxpoc",
+	Long:    "root cmd of htmxpoc",
 }
 
 func Execute() {

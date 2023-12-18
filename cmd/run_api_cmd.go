@@ -13,12 +13,12 @@ import (
 var runApiCmd = &cobra.Command{
 	Use:  "run-api",
 	Args: cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
-
+	RunE: func(cmd *cobra.Command, args []string) error {
 		err := runApi()
 		if err != nil {
 			log.Fatal(err.Error())
 		}
+		return err
 	},
 }
 
