@@ -8,10 +8,10 @@ import (
 templ Layout() {
 	<html lang="en">
 		<head>
-			<meta charset="UTF-8"/>
-			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-			<script src="https://unpkg.com/htmx.org@1.9.9"></script>
-			<script src="https://unpkg.com/htmx.org/dist/ext/debug.js"></script>
+			<meta charset="UTF-8"></meta>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+			<script src="/assets/js/htmx.min.js"></script>
+			<link rel="stylesheet" href="/assets/css/styles.css"></link>
 			<title>Document</title>
 		</head>
 		<body>
@@ -25,7 +25,7 @@ templ MovieList(movies []repositories.Movie) {
 		for _, movie := range movies {
 			@MovieRow(movie)
 		}
-	</div>
+		</div>
 	@AddMovieButton()
 }
 

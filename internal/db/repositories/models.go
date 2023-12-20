@@ -4,7 +4,15 @@
 
 package repositories
 
-import ()
+import (
+	"github.com/google/uuid"
+)
+
+type Author struct {
+	ID        uuid.UUID
+	FirstName string
+	LastName  string
+}
 
 type Movie struct {
 	ID        int64

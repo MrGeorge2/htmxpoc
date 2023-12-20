@@ -1,18 +1,20 @@
 version: '3.8'
 
 services:
-
-  api:
+  miner:
     build:
       context: .
       dockerfile: Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: ["run-api"]
+    environment:
+      - DATABASE_HOSTNAME=postgres
     ports:
-      - "8080:8080"
+      - 8443:8080
     networks:
       - app-network
-    depends_on:
-      - postgres
-    command: run-api
     restart: always
 
   postgres:

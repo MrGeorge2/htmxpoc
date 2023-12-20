@@ -2,9 +2,9 @@ package cmd
 
 import (
 	"context"
+	"gopoc/internal/api/handlers"
 	"gopoc/internal/db"
 	"gopoc/internal/db/repositories"
-	"gopoc/internal/handlers"
 	"log"
 
 	"github.com/spf13/cobra"
